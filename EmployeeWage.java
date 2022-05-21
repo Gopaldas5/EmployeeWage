@@ -9,7 +9,8 @@ public class EmployeeWage {
 
        System.out.println("Welcome to Employee Wage Computation Program on Master Branch");
        Random random = new Random();
-       int attendance = random.nextInt(3);
+
+       final int TOTAL_WORKING_DAY = 20;
        final int IS_ABSENT_TODAY = 0;
        final int IS_FULL_DAY = 1;
        final int IS_HALF_DAY = 2;
@@ -19,13 +20,20 @@ public class EmployeeWage {
        int total_emp_times = 0;
        int total_emp_wage = 0;
        int HALF_DAY_TIME = 4;
+       int attendance;
 
-       total_emp_times = switch (attendance) {
-           case IS_FULL_DAY -> FULL_DAY_TIME;
-           case IS_HALF_DAY -> HALF_DAY_TIME;
-           case IS_ABSENT_TODAY -> ABSENT_DAY_TIME;
-           default -> 0;
-       };
+       for(int i=0; i<TOTAL_WORKING_DAY; i++) {
+           attendance = random.nextInt(3);
+
+
+           total_emp_times = switch (attendance) {
+               case IS_FULL_DAY -> FULL_DAY_TIME;
+               case IS_HALF_DAY -> HALF_DAY_TIME;
+               case IS_ABSENT_TODAY -> ABSENT_DAY_TIME;
+               default -> 0;
+           };
+       }
+
        total_emp_wage += WAGE_PER_HOUR*total_emp_times;
        System.out.println("Total wage of employee= "+total_emp_wage);
    }
